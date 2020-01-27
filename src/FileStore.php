@@ -12,10 +12,10 @@ class FileStore
 
     public function read()
     {
-        return file_get_contents($this->path);;
+        return explode(",",file_get_contents($this->filePath));
     }
-    public function save($data)
+    public function save(array $data)
     {
-        return file_put_contents($this->filePath, $data); // FILE_APPEND 3rd 
+        return file_put_contents($this->filePath, implode(",",$data));
     }
 }

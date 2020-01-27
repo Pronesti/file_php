@@ -11,15 +11,15 @@ class TestFileStore extends TestCase{
     }
     public function testRead(){
         $archivo = new FileStore("test.json");
-        $this->assertIsString($archivo->read());
+        $this->assertIsArray($archivo->read());
     }
     public function testSave(){
         $archivo = new FileStore("test.json");
-        $this->assertNotFalse($archivo->save("holis"));
+        $this->assertNotFalse($archivo->save(["holis"]));
     }
     public function testSaveAndRead(){
         $archivo = new FileStore("test2.json");
-        $archivo->save("holis");
-        $this->assertSame("holis", $archivo->read());
+        $archivo->save(["holis","chau"]); // -> esta linea convierte esto a string quedaria holis, chau
+        $this->assertSame(["holis","chau"], $archivo->read()); // esta linea convierte el string devuelta a array
     }
 }
