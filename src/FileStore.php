@@ -4,22 +4,15 @@ namespace Blogs;
 
 class FileStore
 {
-    private $fileContent;
+    private $filePath;
     public function __construct($path)
     {
-        if (!file_exists($path)) {
-            fopen($path, 'w');
-            $this->fileContent = file_get_contents($path, true);
-            $this->filePath = $path;
-        } else {
-            $this->fileContent = file_get_contents($path, true);
-            $this->filePath = $path;
-        }
+        $this->filePath = $path;
     }
 
     public function read()
     {
-        return $this->fileContent;
+        return file_get_contents($this->path);;
     }
     public function save($data)
     {
